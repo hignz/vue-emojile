@@ -66,7 +66,11 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col v-else md="6" offset-md="3">
+        <v-col
+          v-if="recent.emoticons && !recent.emoticons.length && searched"
+          md="6"
+          offset-md="3"
+        >
           <v-icon x-large class="grey--text mb-4" style="font-size: 100px">
             mdi-incognito
           </v-icon>
@@ -209,7 +213,8 @@ export default {
     busy: false,
     items: ['Created', 'A-Z'],
     isLoading: false,
-    axios
+    axios,
+    searched: false
   }),
   created() {
     this.fetchEmotes()
