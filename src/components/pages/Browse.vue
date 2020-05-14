@@ -79,7 +79,7 @@
           </p>
         </v-col>
       </v-row>
-      <v-progress-circular :indeterminate="busy" color="primary" />
+      <v-progress-circular v-if="busy" :indeterminate="busy" color="primary" />
     </div>
     <!-- </v-tab-item>
       <v-tab-item>
