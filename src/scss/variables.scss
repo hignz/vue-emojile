@@ -1,0 +1,27 @@
+@import '~vuetify/src/styles/styles.sass';
+@import url('https://fonts.googleapis.com/css?family=Baloo+Paaji+2&display=swap');
+$body-font-family: 'Poppins', sans-serif !important;
+
+$emojileDark: (
+  'base': #292b2f,
+  'lighten-1': #2f3136,
+  'lighten-2': #36393f,
+  'darken-1': #343a40,
+);
+
+$colors: (
+  'oskillsDark': $emojileDark,
+) !default;
+
+$material-dark: map-merge(
+  $material-dark,
+  (
+    'app-bar': map-get($emojileDark, 'base'),
+    "background": map-get($emojileDark, "base"),
+    'cards': map-get($emojileDark, 'lighten-1'),
+    'chips': map-get($emojileDark, 'lighten-2'),
+    'navigation-drawer': map-get($emojileDark, 'base'),
+    'toolbar': map-get($emojileDark, 'lighten-1'),
+    'bottom-navigation': map-get($emojileDark, 'base'),
+  )
+);
