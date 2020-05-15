@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" max-width="500" @input="v => v || close()">
     <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on">
-        <v-icon small>
+      <v-btn icon class="mb-1" color="primary" v-on="on">
+        <v-icon large>
           mdi-plus
         </v-icon>
       </v-btn>

@@ -79,19 +79,21 @@ import validationRules from '@/mixins/validationRules';
 
 export default {
   mixins: [validationRules],
-  data: () => ({
-    valid: false,
-    email: '',
-    password: '',
-    confirmPassword: '',
-    hidePassword: true,
-    isRegistering: false,
-    passwordRules: [
-      v => !!v || 'Password is required',
-      v => v === this.password || 'Passwords must match',
-      v => v.length > 7 || 'Password must be at least 8 characters'
-    ]
-  }),
+  data() {
+    return {
+      valid: false,
+      email: '',
+      password: '',
+      confirmPassword: '',
+      hidePassword: true,
+      isRegistering: false,
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => v === this.password || 'Passwords must match',
+        v => v.length > 7 || 'Password must be at least 8 characters'
+      ]
+    };
+  },
   methods: {
     ...mapActions(['doRegister']),
     register() {
@@ -103,10 +105,20 @@ export default {
         confirmpassword: this.confirmPassword
       })
         .then(() => {
+          this.$toast.success('Registration successful, please login', {
+            timeout: 2000,
+            position: 'bottom-center'
+          });
+
           this.$router.push({ name: 'login' });
         })
-        .catch()
-        .finall(() => (this.isRegistering = false));
+        .catch(err => {
+          this.$toast.error(err.response.data.ModelState, {
+            timeout: 2000,
+            position: 'bottom-center'
+          });
+        })
+        .finally(() => (this.isRegistering = false));
     }
   }
 };

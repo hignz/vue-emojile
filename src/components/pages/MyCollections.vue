@@ -1,30 +1,44 @@
 <template>
   <v-container>
-    <p class="display-1">
-      My Collections <CreateCollectionDialog @created="addCollection" />
-    </p>
-
-    <v-row>
-      <v-col
-        v-for="c in sortedCollections"
-        :key="c.Id"
-        cols="12"
-        sm="12"
-        md="3"
-      >
-        <v-card outlined @click="navigateTo(c)">
-          <v-card-title>
-            {{ c.Name }}
-          </v-card-title>
-          <v-card-text>
-            Created:
-            {{
-              formatDistanceToNow(new Date(c.CreatedAt), {
-                addSuffix: true
-              })
-            }}
-          </v-card-text>
-        </v-card>
+    <v-row justify="space-between" align="center">
+      <v-col md="8" offset-sm="2" class="pb-0">
+        <p class="font-weight-bold title grey--text">
+          My Collections
+          <span v-if="collections.length"
+            >({{ collections.length || '' }})</span
+          >
+          <span class="ml-6">
+            <CreateCollectionDialog @created="addCollection" />
+          </span>
+        </p>
+        <v-row v-if="collections.length">
+          <v-col
+            v-for="c in sortedCollections"
+            :key="c.Id"
+            cols="12"
+            sm="12"
+            md="3"
+          >
+            <v-card outlined @click="navigateTo(c)">
+              <v-card-title>
+                {{ c.Name }}
+              </v-card-title>
+              <v-card-text>
+                Created:
+                {{
+                  formatDistanceToNow(new Date(c.CreatedAt), {
+                    addSuffix: true
+                  })
+                }}
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-else>
+          <v-col class="text-center">
+            <p class="grey--text title">You don't have any collections...</p>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>

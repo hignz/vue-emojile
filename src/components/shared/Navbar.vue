@@ -20,8 +20,19 @@
     </v-menu>
 
     <v-spacer></v-spacer>
-    <v-btn v-if="!accessToken" class="ml-4" :to="{ path: '/login' }" text
+    <v-btn
+      v-if="!accessToken"
+      class="ml-4 black--text"
+      :to="{ path: '/login' }"
+      color="primary"
       >Login</v-btn
+    >
+    <v-btn
+      v-if="!accessToken"
+      class="ml-4 black--text"
+      :to="{ path: '/register' }"
+      color="primary"
+      >Register</v-btn
     >
     <v-btn v-if="accessToken" :to="{ path: '/mycollections' }" text
       >My Collections</v-btn

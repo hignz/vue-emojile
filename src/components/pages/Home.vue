@@ -31,7 +31,7 @@
         </v-col>
         <v-col cols="12" sm="12" md="8" class="text-md-start text-center">
           <p class="grey--text display-2 px-4">
-            Explore highly rated collections
+            Explore other users collections
           </p>
         </v-col>
       </v-row>

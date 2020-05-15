@@ -26,23 +26,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row v-if="!collection && isLoaded">
-      <v-col sm="12" md="6" offset-md="3">
-        <v-card outlined>
-          <v-card-text class="text-center">
-            <p>
-              <v-icon x-large class="grey--text">mdi-thought-bubble</v-icon>
-            </p>
-            <p class="subtitle-1">
-              This collection is empty...
-            </p>
-            <v-btn class="ml-4" :to="{ path: '/browse' }" color="primary" text
-              >Browse</v-btn
-            >
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row> -->
     <v-row justify="center">
       <v-col md="8">
         <v-row v-if="emotes.length" justify="start" align="stretch">
@@ -82,7 +65,11 @@
           </v-col>
         </v-row>
         <v-row v-else justify="center" align="stretch">
-          <v-col v-if="isLoaded && !emotes.length && collection" sm="12" md="8">
+          <v-col
+            v-if="isLoaded && !emotes.length && collection"
+            sm="12"
+            md="12"
+          >
             <v-card outlined style="background: transparent">
               <v-card-text class="text-center">
                 <p>
@@ -105,7 +92,6 @@
                 >
                 <v-spacer />
               </v-card-actions>
-              <!-- v-if="isLoaded && !emotes.length && collection" -->
             </v-card>
           </v-col>
         </v-row>

@@ -91,7 +91,7 @@ export default {
             position: 'bottom-center'
           });
 
-          this.$router.push({ name: 'collections' });
+          this.$router.push({ name: 'mycollections' });
         })
         .catch(() => {
           this.$toast.error('Username or password is incorrect', {

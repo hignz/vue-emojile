@@ -2,6 +2,7 @@
   <v-container>
     <v-row justify="space-between" align="center">
       <v-col md="8" offset-sm="2" class="pb-0">
+        <p class="font-weight-bold title grey--text">Browse Emotes</p>
         <v-row>
           <v-col cols="12" sm="12" md="3">
             <v-select
@@ -83,15 +84,15 @@ export default {
     recent: {},
     query: '',
     busy: false,
-    items: ['name', 'owner', 'count', 'updated', 'created'],
+    items: ['Name', 'Owner', 'Count', 'Updated', 'Created'],
     isLoading: false,
     axios,
     searched: false,
-    selectedSort: 'created'
+    selectedSort: 'Created'
   }),
   created() {
     // fetch recent emotes
-    this.fetchEmotes()
+    this.fetchEmotes('lul')
       .then(res => {
         this.recent = res;
       })
