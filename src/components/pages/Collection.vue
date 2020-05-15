@@ -81,7 +81,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row v-else justify="center">
+        <v-row v-else justify="center" align="stretch">
           <v-col v-if="isLoaded && !emotes.length && collection" sm="12" md="8">
             <v-card outlined style="background: transparent">
               <v-card-text class="text-center">
@@ -152,8 +152,10 @@ export default {
     selectedEmote: {}
   }),
   created() {
+    // gets id from url
     const collectionId = this.$route.params.id;
 
+    // gets data from web api for current collection
     this.fetchCollection(collectionId)
       .then(res => {
         this.collection = res;
@@ -161,6 +163,7 @@ export default {
       .catch(err => console.log(err))
       .finally(() => (this.isLoaded = true));
 
+    // fetchs all the emotes in current collection
     this.fetchEmotesByCollection(collectionId)
       .then(res => {
         this.emotes = res.sort(
@@ -177,6 +180,7 @@ export default {
       'doDeleteEmoji',
       'doDeleteCollection'
     ]),
+    // calls delete endpoint for passed in emote
     deleteEmoji(e) {
       this.isDeleting = true;
 
@@ -194,6 +198,7 @@ export default {
           this.dialog = false;
         });
     },
+    // calls delete endpoint for collection id from url
     deleteCollection() {
       this.doDeleteCollection(this.$route.params.id)
         .then(() => {
@@ -207,6 +212,7 @@ export default {
           console.log(err);
         });
     },
+    // shows confirmation delete dialog
     showEmoteDeleteDialog(e) {
       this.selectedEmote = e;
       this.dialog = true;

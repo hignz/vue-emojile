@@ -96,11 +96,13 @@ export default {
     similar: []
   }),
   created() {
+    // gets emote from web api using id from url param
     this.fetchEmote(this.$route.params.id)
       .then(res => {
         this.emote = res.emote;
         this.isLoaded = true;
 
+        // fetches similar emotes by using first 3 chars from emote name
         this.fetchEmotes(this.emote.name.substr(0, 3))
           .then(res => {
             this.similar.push(...res.emoticons);
@@ -117,6 +119,7 @@ export default {
       'postEmote',
       'fetchEmotes'
     ]),
+    // is called on click of "add to collection" button, to get current users collections
     populateCollections() {
       this.isLoadingCollections = true;
 
@@ -127,6 +130,7 @@ export default {
         .catch(err => console.log(err))
         .finally(() => (this.isLoadingCollections = false));
     },
+    // calls web api endpoint to post a new emote with the selected collection id
     addToCollection(c) {
       this.postEmote({
         name: this.emote.name,

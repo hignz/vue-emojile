@@ -31,17 +31,26 @@ export default {
       return res.data;
     });
   },
-  fetchMyCollections(_, userId) {
+  fetchMyCollections() {
     // commit(constants.SET_LOADING, true);
 
-    return http
-      .get(userId ? `/api/collections?userId=${userId}` : '/api/collections')
-      .then(res => {
-        // commit(constants.SET_LOADING, false);
+    return http.get('/api/collections/user').then(res => {
+      // commit(constants.SET_LOADING, false);
 
-        return res.data;
-      });
+      return res.data;
+    });
   },
+  // fetchMyCollections(_, userId) {
+  //   // commit(constants.SET_LOADING, true);
+
+  //   return http
+  //     .get(userId ? `/api/collections?userId=${userId}` : '/api/collections')
+  //     .then(res => {
+  //       // commit(constants.SET_LOADING, false);
+
+  //       return res.data;
+  //     });
+  // },
   fetchCollection({ commit }, id) {
     commit(constants.SET_LOADING, true);
 

@@ -83,6 +83,7 @@ export default {
     login() {
       this.isLoggingIn = true;
 
+      // tries login, on success push to collections, on error show toast
       this.doLogin({ email: this.email, password: this.password })
         .then(() => {
           this.$toast('Login successfull', {

@@ -1,15 +1,9 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-text-field v-model="name" label="Name" dense=""> </v-text-field>
-      </v-col>
-      <v-col>
-        <v-btn text @click="createCollection()">Create</v-btn>
-      </v-col>
-    </v-row>
+    <p class="display-1">
+      My Collections <CreateCollectionDialog @created="addCollection" />
+    </p>
 
-    <p class="display-1">My Collections</p>
     <v-row>
       <v-col
         v-for="c in sortedCollections"
@@ -39,14 +33,19 @@
 <script>
 import { mapActions } from 'vuex';
 import { formatDistanceToNow } from 'date-fns';
+import CreateCollectionDialog from '@/components/shared/CreateCollectionDialog';
 
 export default {
+  components: {
+    CreateCollectionDialog
+  },
   data: () => ({
     name: '',
     collections: [],
     formatDistanceToNow
   }),
   computed: {
+    // sorts collections via date, uses computed property to ensure reactivity
     sortedCollections() {
       return this.collections
         .slice()
@@ -54,6 +53,7 @@ export default {
     }
   },
   created() {
+    // fetches logged in users collections
     this.fetchMyCollections()
       .then(res => {
         this.collections = res.sort(
@@ -64,18 +64,11 @@ export default {
   },
   methods: {
     ...mapActions(['postCollection', 'fetchMyCollections']),
-    createCollection() {
-      this.postCollection({ name: this.name })
-        .then(res => {
-          this.$toast.success('Collection created!', {
-            timeout: 2000,
-            position: 'bottom-center'
-          });
-
-          this.collections.push(res);
-        })
-        .catch(err => console.log(err));
+    // handles the emit from the dialog componenet
+    addCollection(item) {
+      this.collections.push(item);
     },
+    // uses vue router to open collection and pass collection id
     navigateTo(collection) {
       this.$router.push({ name: 'collection', params: { id: collection.Id } });
     }

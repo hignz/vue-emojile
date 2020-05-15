@@ -1,65 +1,4 @@
 <template>
-  <!-- <v-row justify="center" align="center">
-      <v-col>
-        <v-row justify="center" align="center" class="text-center"> -->
-  <!-- <v-col sm="12">
-            <p>
-              <v-icon class="i mr-6" large>mdi-school</v-icon>
-              <span class="grey--text">
-                Search through a collection of thousands of emojis
-              </span>
-            </p>
-          </v-col>
-          <v-col sm="12">
-            <span class="grey--text">
-              Create collections
-            </span>
-            <v-icon class="i mr-6" large>mdi-school</v-icon>
-          </v-col>
-          <v-col sm="12">
-            <p>
-              <v-icon class="i">mdi-school</v-icon>
-              <span>
-                Find other highly rated collections
-              </span>
-            </p>
-          </v-col> -->
-  <!-- <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
-            <v-timeline-item fill-dot icon="mdi-magnify">
-              <v-card dark>
-                <v-card-title class="title">Find</v-card-title>
-                <v-card-text class="text--primary">
-                  <p>
-                    Search through a collection of thousands of emojis
-                  </p>
-                </v-card-text>
-              </v-card>
-            </v-timeline-item>
-            <v-timeline-item fill-dot icon="mdi-list">
-              <v-card dark>
-                <v-card-title class="title">Curate</v-card-title>
-                <v-card-text class="text--primary">
-                  <p>
-                    Create collections
-                  </p>
-                </v-card-text>
-              </v-card>
-            </v-timeline-item>
-            <v-timeline-item fill-dot icon="mdi-magnify">
-              <v-card dark>
-                <v-card-title class="title">Share</v-card-title>
-                <v-card-text class="text--primary">
-                  <p>
-                    Find other highly rated collections
-                  </p>
-                </v-card-text>
-              </v-card>
-            </v-timeline-item>
-          </v-timeline> -->
-  <!-- </v-row>
-      </v-col>
-    </v-row> -->
-
   <full-page id="fullpage" :options="options">
     <div class="section">
       <v-row class="text-center mt-48" align="center">
@@ -101,8 +40,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
+// uses fullpage.js to create full page scrolling effect
 export default {
   name: 'Home',
   components: {},
@@ -113,18 +51,6 @@ export default {
         scrollBar: false,
         menu: '#menu',
         navigation: true
-        // anchors: ['page1', 'page2', 'page3']
-        // sectionsColor: [
-        //   '#41b883',
-        //   '#ff5f45',
-        //   '#0798ec',
-        //   '#fec401',
-        //   '#1bcee6',
-        //   '#ee1a59',
-        //   '#2c3e4f',
-        //   '#ba5be9',
-        //   '#b4b8ab'
-        // ]
       }
     };
   }
