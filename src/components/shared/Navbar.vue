@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar dense flat style="z-index: 1; position: relative;">
+  <v-app-bar app dense flat>
     <v-toolbar-title @click="goHome()">Emojile</v-toolbar-title>
     <!-- <v-btn class="ml-4" :to="{ path: '/browse' }" text>Browse</v-btn> -->
     <v-menu offset-y>
@@ -34,7 +34,6 @@
       @click="logout()"
     >
       <v-icon class="mr-2">mdi-logout</v-icon>
-      Logout
     </v-btn>
   </v-app-bar>
 </template>
@@ -44,6 +43,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   data: () => ({
+    // used to loop over to create menu
     browseItems: [
       {
         text: 'Emotes',
@@ -52,10 +52,6 @@ export default {
       {
         text: 'Collections',
         path: '/collections'
-      },
-      {
-        text: 'Users',
-        path: '/users'
       }
     ]
   }),

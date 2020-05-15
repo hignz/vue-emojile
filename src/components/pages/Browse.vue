@@ -3,8 +3,9 @@
     <v-row justify="space-between" align="center">
       <v-col md="8" offset-sm="2" class="pb-0">
         <v-row>
-          <v-col md="3">
+          <v-col cols="12" sm="12" md="3">
             <v-select
+              v-model="selectedSort"
               :items="items"
               append-icon="mdi-filter-variant"
               label="Sort"
@@ -12,8 +13,8 @@
               dense
             />
           </v-col>
-          <v-col md="3"> </v-col>
-          <v-col md="6">
+          <v-col sm="12" md="3"> </v-col>
+          <v-col cols="12" sm="12" md="6">
             <v-text-field
               v-model="query"
               label="Search..."
@@ -82,12 +83,14 @@ export default {
     recent: {},
     query: '',
     busy: false,
-    items: ['Created', 'A-Z'],
+    items: ['name', 'owner', 'count', 'updated', 'created'],
     isLoading: false,
     axios,
-    searched: false
+    searched: false,
+    selectedSort: 'created'
   }),
   created() {
+    // fetch recent emotes
     this.fetchEmotes()
       .then(res => {
         this.recent = res;
@@ -114,7 +117,9 @@ export default {
           });
       }, 500);
     },
+    // called when scroll point is hit, creates infinite scroll effect
     loadMore() {
+      // make sure there is a next page
       if (!this.recent._links || !this.recent._links.next || this.busy) {
         this.busy = false;
         return;
@@ -129,7 +134,6 @@ export default {
               : this.recent._links.next
           )
           .then(res => {
-            console.log(res);
             this.recent._links = res.data._links;
             this.recent.emoticons.push(...res.data.emoticons);
           });
